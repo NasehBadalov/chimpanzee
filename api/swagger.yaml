@@ -1,0 +1,1312 @@
+openapi: 3.1.0
+info:
+  title: chimpanzee
+  version: '1.0'
+  summary: chimpanzee
+  description: API for chimpanzee
+  contact:
+    name: Naseh Badalov
+    email: nasehbadalov@gmail.com
+servers:
+  - description: nop
+    url: 'https://nop'
+paths:
+  '/api/v1/surveys/{id}':
+    get:
+      summary: Get survey data
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  questions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Question'
+              examples:
+                example-1:
+                  value:
+                    title: survey 1
+                    questions:
+                      - type: scale
+                        answer:
+                          - 1
+                          - 10
+                        title: question1
+                        position: 1
+                      - type: radio
+                        answer:
+                          - abc
+                          - bca
+                        title: question2
+                        position: 2
+                      - type: checkbox
+                        title: question3
+                        answer:
+                          - abc
+                          - bca
+                        position: 3
+                      - type: textfield
+                        title: question4
+                        position: 4
+                        answer: null
+        '404':
+          description: Not Found
+      operationId: get-api-v1-survey
+      description: Endpoint to get survey data with questions and answers
+    parameters:
+      - schema:
+          type: integer
+        name: id
+        in: path
+        required: true
+        description: pk
+  /api/v1/surveys:
+    get:
+      summary: Get list of surveys
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+              examples:
+                example-1:
+                  value:
+                    - id: 1
+                      title: Survey about life
+      operationId: get-api-v1-surveys
+      description: Get list of surveys
+    parameters: []
+  /api/v1/reports:
+    get:
+      summary: Get all reports
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                x-examples:
+                  example-1:
+                    survey_id: 1
+                    reports:
+                      - report_id: 12
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 5
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: Very satisfied
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer:
+                              - Reliable
+                              - High quality
+                              - Impractical
+                              - Good value for money
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: Somewhat well
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: High quality
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: Poor
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: Very responsive
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: 1 - 2 years
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: Very likely
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 11
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 2
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 10
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 9
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 8
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 7
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 6
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 5
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 5
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: Very satisfied
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer:
+                              - Reliable
+                              - High quality
+                              - Impractical
+                              - Good value for money
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: Somewhat well
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: High quality
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: Poor
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: Very responsive
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: 1 - 2 years
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: Very likely
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 4
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 9
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: Somewhat dissatisfied
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer:
+                              - Unique
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: Very well
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: Very high quality
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: Poor
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: Extremely responsive
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: I havent made a purchase yet
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: Very likely
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: fdsdfgdf
+                      - report_id: 3
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 2
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 7
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: Very dissatisfied
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer:
+                              - Poor quality
+                              - Useful
+                              - Reliable
+                              - Overpriced
+                              - Unique
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: Very well
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: Very high quality
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 1
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 1
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                properties:
+                  survey_id:
+                    type: number
+                  reports:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        report_id:
+                          type: number
+                        answers:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                minLength: 1
+                              question:
+                                type: string
+                                minLength: 1
+                              position:
+                                type: number
+                              answer:
+                                oneOf:
+                                  - type: integer
+                                    properties: {}
+                                  - type: string
+                                    properties: {}
+                                  - type: array
+                                    items:
+                                      type: string
+                                  - type: 'null'
+                                    properties: {}
+                            required:
+                              - type
+                              - question
+                              - position
+                      required:
+                        - report_id
+                required:
+                  - survey_id
+                  - reports
+              examples:
+                example-1:
+                  value:
+                    survey_id: 1
+                    reports:
+                      - report_id: 12
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 5
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: Very satisfied
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer:
+                              - Reliable
+                              - High quality
+                              - Impractical
+                              - Good value for money
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: Somewhat well
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: High quality
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: Poor
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: Very responsive
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: 1 - 2 years
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: Very likely
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 11
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 2
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 10
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 9
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 8
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 7
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 6
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 5
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 5
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: Very satisfied
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer:
+                              - Reliable
+                              - High quality
+                              - Impractical
+                              - Good value for money
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: Somewhat well
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: High quality
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: Poor
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: Very responsive
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: 1 - 2 years
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: Very likely
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 4
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 9
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: Somewhat dissatisfied
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer:
+                              - Unique
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: Very well
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: Very high quality
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: Poor
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: Extremely responsive
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: I havent made a purchase yet
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: Very likely
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: fdsdfgdf
+                      - report_id: 3
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: null
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 2
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 7
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: Very dissatisfied
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer:
+                              - Poor quality
+                              - Useful
+                              - Reliable
+                              - Overpriced
+                              - Unique
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: Very well
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: Very high quality
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+                      - report_id: 1
+                        answers:
+                          - type: scale
+                            question: How likely is it that you would recommend this company to a friend or colleague?
+                            position: 1
+                            answer: 1
+                          - type: radio
+                            question: 'Overall, how satisfied or dissatisfied are you with our company?'
+                            position: 2
+                            answer: null
+                          - type: checkbox
+                            question: Which of the following words would you use to describe our products? Select all that apply.
+                            position: 3
+                            answer: null
+                          - type: radio
+                            question: How well do our products meet your needs?
+                            position: 4
+                            answer: null
+                          - type: radio
+                            question: How would you rate the quality of the product?
+                            position: 5
+                            answer: null
+                          - type: radio
+                            question: How would you rate the value for money of the product?
+                            position: 6
+                            answer: null
+                          - type: radio
+                            question: How responsive have we been to your questions or concerns about our products?
+                            position: 7
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 8
+                            answer: null
+                          - type: radio
+                            question: How long have you been a customer of our company?
+                            position: 9
+                            answer: null
+                          - type: textfield
+                            question: 'Do you have any other comments, questions, or concerns?'
+                            position: 10
+                            answer: null
+      operationId: get-api-v1-reports
+      description: get all reports
+    post:
+      summary: Create new report
+      operationId: post-api-v1-reports
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    message: Success
+      description: Endpoint to create new report
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                survey_id:
+                  type: integer
+                answers:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Answer'
+            examples:
+              example-1:
+                value:
+                  survey_id: 0
+                  answers:
+                    - position: 1
+                      type: scale
+                      answer: 5
+        description: ''
+components:
+  schemas:
+    Question:
+      title: Question
+      type: object
+      properties:
+        title:
+          type: string
+        position:
+          type: integer
+        type:
+          type: string
+          enum:
+            - scale
+            - radio
+            - checkbox
+            - textfield
+        answer:
+          anyOf:
+            - type: array
+              description: covers radios and checkboxes
+              items:
+                type: string
+            - type: array
+              description: |-
+                covers "scale"
+                [start, end] - two integers representing start and end of range
+              items:
+                type: integer
+            - type: 'null'
+              properties: {}
+      required:
+        - title
+        - position
+        - type
+        - answer
+    Answer:
+      title: Answer
+      type: object
+      properties:
+        position:
+          type: integer
+        type:
+          type: string
+          enum:
+            - scale
+            - checkbox
+            - radio
+            - textfield
+        answer:
+          oneOf:
+            - type: array
+              items:
+                type: string
+            - type: string
+              properties: {}
+            - type: integer
+              properties: {}
+      examples:
+        - position: 1
+          type: scale
+          answer: 5
+        - position: 1
+          type: checkbox
+          answer:
+            - Answer 1
+            - Answer 2
+        - position: 1
+          type: radio
+          answer: Answer text
+        - position: 1
+          type: textfield
+          answer: Answer text
